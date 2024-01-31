@@ -34,7 +34,7 @@ jobs:
       version: ${{ steps.release.outputs.version }}
     steps:
       - name: ⤵️ Check out code from GitHub
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: 🚀 Run add-on information action
         id: information
         uses: frenck/action-addon-information@v1.4.2
@@ -166,7 +166,7 @@ jobs:
             "ghcr.io/${{ github.repository_owner }}/${{ needs.information.outputs.slug }}/${{ matrix.architecture }}:${{ needs.information.outputs.version }}"
   publish-edge:
     name: 📢 Publish to edge repository
-    if: needs.information.outputs.environment == 'edge'
+    if: 0 #needs.information.outputs.environment == 'edge'
     needs:
       - information
       - deploy
@@ -189,9 +189,9 @@ jobs:
             }
   publish-beta:
     name: 📢 Publish to beta repository
-    if: |
-      needs.information.outputs.environment == 'beta' ||
-      needs.information.outputs.environment == 'stable'
+    if: 0 #|
+#      needs.information.outputs.environment == 'beta' ||
+#      needs.information.outputs.environment == 'stable'
     needs:
       - information
       - deploy
@@ -214,7 +214,7 @@ jobs:
             }
   publish-stable:
     name: 📢 Publish to stable repository
-    if: needs.information.outputs.environment == 'stable'
+    if: 0 #needs.information.outputs.environment == 'stable'
     needs:
       - information
       - deploy
